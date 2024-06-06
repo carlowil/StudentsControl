@@ -1,7 +1,8 @@
 const Sequelize = require("sequelize");
 module.exports = new Sequelize('app', 'web', 'web234!', {
-    host: '192.168.1.36',
+    host: '78.107.195.27',
     dialect: 'postgres',
+    port: 2000,
     operatorsAliases: 0,
     pool: {
       max: 100,
