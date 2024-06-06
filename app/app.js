@@ -15,6 +15,7 @@ const loginRouter = require("./routes/loginRouter");
 const tasksRouter = require("./routes/tasksRouter");
 const usersRouter = require("./routes/usersRouter");
 const examsRouter = require("./routes/examsRouter");
+const marksRouter = require("./routes/marksRouter");
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -26,6 +27,7 @@ app.use("/api/auth", loginRouter);
 app.use("/api/tasks", tasksRouter);
 app.use("/api/users", usersRouter)
 app.use("/api/exams", examsRouter);
+app.use("/api/marks", marksRouter);
 
 app.get("*", function(req, res) {
     res.setHeader('Content-Type', 'text/html');

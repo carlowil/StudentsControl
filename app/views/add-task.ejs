@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Admin Panel</title>
+        <script type="text/javascript" src="/jq.js"></script>
+        <script type="text/javascript" src="/bootstrap.js"></script>
+        <script type="text/javascript" src="/task-add.js"></script>
+        <link rel="stylesheet" href="/bootstrap.css" type="text/css">
+        <style>
+            .text-small {
+                font-size: 85%;
+            }
+            .dropdown-toggle:not(:focus) {
+                outline: 0;
+            }
+            .log-out-a {
+                color: inherit;
+                text-decoration: none;
+            }
+            .form-div {
+                width: 600px;
+                padding: 10px;
+            }
+            main {
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+                min-height: 650px;
+            }
+            .error {
+                width: 400px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="p-3 mb-3 border-bottom">
+            <div class="container">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                        <li><a href="/professor-panel/tasks" class="nav-link px-2 link-secondary">Tasks</a></li>
+                        <li><a href="/professor-panel/students" class="nav-link px-2 link-body-emphasis">Students</a></li>
+                    </ul>
+            
+                    <form id="search-form" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" style="display: flex;">
+                        <input id="search-input" type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                    </form>
+            
+                    <div class="text-end">
+                        <a href="/logout" class="btn btn-primary">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="alert-wrapper">
+                <div class="error alert alert-danger" role="alert" style="display: none;">
+                            
+                </div>
+            </div>
+            <div class="form-div">
+                <form 
+                id="send_task">
+                    <div class="form-group">
+                        <div class="mb-3">
+                            <label for="textTitle" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="textTitle" placeholder="Title">
+                        </div>
+                        <div class="mb-3">
+                            <label for="selectStudent" class="form-label">Student</label>
+                            <select class="form-select mb-3" id="selectStudent">
+                                <% for(let i = 0; i < students.length; i++) {%>
+                                    <% if (students[i].role != 'professor') { %>
+                                        <option value="<%=students[i].id%>"><%=students[i].username%></option>
+                                    <% } %> 
+                                <%}%>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="textAreaContext" class="form-label">Context</label>
+                            <textarea class="form-control" id="textAreaContext" rows="6"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary mt-2">Add task</button>
+                      </div>
+                </form>
+            </div>
+        </main>
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <p class="col-md-4 mb-0 text-muted" style="margin-left: 32px;">&copy; 2024 Sergeev Danila</p>
+            <ul class="nav col-md-4 justify-content-end" style="margin-right: 32px;">
+              <li class="nav-item"><a href="/professor-panel/tasks" class="nav-link px-2 text-muted">Tasks</a></li>
+              <li class="nav-item"><a href="/professor-panel/students" class="nav-link px-2 text-muted">Students</a></li>
+            </ul>
+        </footer>
+    </body>
+</html>

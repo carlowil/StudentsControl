@@ -72,6 +72,20 @@ exports.professorPanel = async function(req, res) {
     })
 }
 
+exports.addTask = async function(req, res) {
+    await fetch('http://localhost:8080/api/users/')
+    .then((res) => {
+        return res.json()
+    })
+    .then((data) => {
+        res.render('add-task', 
+        {
+            students: data.users
+        }
+    );
+    })
+}
+
 exports.logout = function(req, res) {
     res.cookie("jwt", "", { maxAge: "1" });
     db.query("RESET ROLE;");

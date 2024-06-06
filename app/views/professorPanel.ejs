@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Admin Panel</title>
         <script type="text/javascript" src="/jq.js"></script>
+        <script type="text/javascript" src="/bootstrap.js"></script>
+        <script type="text/javascript" src="/sendmark.js"></script>
         <link rel="stylesheet" href="/bootstrap.css" type="text/css">
         <style>
             .text-small {
@@ -43,20 +45,26 @@
         </style>
     </head>
     <body>
-        <div class="modal fade" id="checkModal" tabindex="-1" aria-labelledby="checkModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+        <div class="modal fade" id="markModal" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="checkModalLabel">Leave a student mark</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="markModalLabel">Model test</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                              <label for="mark-name" class="col-form-label">Mark:</label>
+                              <select class="form-select" id="dialogSelect">
+                              </select>
+                            </div>
+                          </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="dialogSendButton">Send mark</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -86,11 +94,11 @@
                 </div>
               <% } else { %> 
                     <% for(let i = 0; i < data.length; i++) {%>
-                        <div class="card mt-4">
+                        <div class="card mt-4" data-id="<%=data[i].id%>" data-title="<%=data[i].title%>">
                             <div class="card-header">
                                 <%=data[i].title%>
                             </div>
-                            <div class="card-body" data-id="<%=data[i].id%>">
+                            <div class="card-body">
                                 <h5 class="card-title">Student id: <%=data[i].user_id%></h5>
                                 <% if (data[i].ready) { %> 
                                     <span class="badge bg-success mb-2">Passed</span>
