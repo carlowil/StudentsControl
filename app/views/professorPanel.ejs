@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Admin Panel</title>
+        <script type="text/javascript" src="/jq.js"></script>
+        <link rel="stylesheet" href="/bootstrap.css" type="text/css">
+        <style>
+            .text-small {
+                font-size: 85%;
+            }
+            .dropdown-toggle:not(:focus) {
+                outline: 0;
+            }
+            .log-out-a {
+                color: inherit;
+                text-decoration: none;
+            }
+            .add-task {
+                position: fixed;
+                width: 160px;
+                bottom: 0;
+                right: 0;
+                margin-right: 32px;
+                margin-bottom: 32px;
+            }
+            main {
+                width: 1300px;
+                margin: 0 auto;
+                min-height: 700px;
+            }
+            .task-buttons {
+                max-width: 80px;
+            }
+            .empty-data {
+                width: 1000px;
+                height: 700px;
+                text-align: center;
+                align-items: center;
+                align-content: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="modal fade" id="checkModal" tabindex="-1" aria-labelledby="checkModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="checkModalLabel">Leave a student mark</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+                </div>
+            </div>
+        </div>
+        <header class="p-3 mb-3 border-bottom">
+            <div class="container">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                        <li><a href="/professor-panel/tasks" class="nav-link px-2 link-secondary">Tasks</a></li>
+                        <li><a href="/professor-panel/students" class="nav-link px-2 link-body-emphasis">Students</a></li>
+                    </ul>
+            
+                    <form id="search-form" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" style="display: flex;">
+                        <input id="search-input" type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                    </form>
+            
+                    <div class="text-end">
+                        <a href="/logout" class="btn btn-primary">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <% if (data.length == 0) { %> 
+                <div class="empty-data">
+                    <img class="photo" src="empty.png"/>
+                    <p>There is no tasks for your students!</p>
+                </div>
+              <% } else { %> 
+                    <% for(let i = 0; i < data.length; i++) {%>
+                        <div class="card mt-4">
+                            <div class="card-header">
+                                <%=data[i].title%>
+                            </div>
+                            <div class="card-body" data-id="<%=data[i].id%>">
+                                <h5 class="card-title">Student id: <%=data[i].user_id%></h5>
+                                <% if (data[i].ready) { %> 
+                                    <span class="badge bg-success mb-2">Passed</span>
+                                <% } else { %> 
+                                    <span class="badge bg-danger mb-2">Not passed!</span>
+                                <% } %>
+                                <p class="card-text"><%=data[i].body%></p>
+                                <% if (data[i].ready) { %>
+                                    <button type="button" class="btn btn-primary task-buttons" disabled>Check</button>
+                                <% } else { %>
+                                    <button type="button" class="btn btn-primary task-buttons check-button">Check</button>
+                                <%}%>
+                            </div>
+                        </div>
+                    <%}%>
+              <% } %>
+        </main>
+        <a href="/professor-panel/tasks/add" class="btn btn-primary add-task">Add task</a>
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <p class="col-md-4 mb-0 text-muted" style="margin-left: 32px;">&copy; 2024 Sergeev Danila</p>
+            <ul class="nav col-md-4 justify-content-end" style="margin-right: 32px;">
+              <li class="nav-item"><a href="/professor-panel/tasks" class="nav-link px-2 text-muted">Tasks</a></li>
+              <li class="nav-item"><a href="/professor-panel/students" class="nav-link px-2 text-muted">Students</a></li>
+            </ul>
+        </footer>
+    </body>
+</html>

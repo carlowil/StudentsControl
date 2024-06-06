@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Registration Page</title>
+        <link rel="stylesheet" href="bootstrap.css" type="text/css">
+        <script type="text/javascript" src="jq.js"></script>
+        <script type="text/javascript" src="registration.js"></script>
+        <style>
+          html,
+          body {
+            text-align: center;
+            height: 100%;
+          }
+
+          .form-register {
+            max-width: 330px;
+            padding: 1rem;
+          }
+
+          .form-register .form-floating:focus-within {
+            z-index: 2;
+          }
+
+          .form-register input[id="emailInput"] {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+          }
+
+          .form-register input[id="passwordInput"] {
+            margin-bottom: -1px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+          }
+        </style>
+    </head>
+    <body class="d-flex align-items-center py-4 bg-body-tertiary">
+      <main class="form-register w-100 m-auto">
+        <form>
+          <h1 class="h3 mb-3 fw-normal">Registration</h1>
+      
+          <div class="form-floating">
+            <input type="email" class="form-control" id="emailInput" placeholder="name@example.com" maxlength="50" required>
+            <label for="emailInput">Email address</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" class="form-control" id="passwordInput" placeholder="Password" maxlength="50" required>
+            <label for="passwordInput">Password</label>
+          </div>
+
+          <div class="error alert alert-danger" role="alert" style="display: none;">
+
+          </div>
+          <button class="btn btn-primary w-100 py-2 mb-3 mt-2" type="submit">Register</button>
+          <a class="link-primary" href="/login">Already registered? Login</a>
+        </form>
+      </main>
+    </body>
+</html>
